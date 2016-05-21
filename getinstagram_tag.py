@@ -56,12 +56,15 @@ while next:
             pass
     	location = media.images['standard_resolution'].url
     	name = "%s.jpg" % media.id
-    	print phototitle
+
+        #Debug prints...
+    	# print phototitle
         # print "%s:%s:%s" % (i, media.images['standard_resolution'].url, media.id)
 
     	photos.append(location)
         if not os.path.exists(path+"/"+name):
             print "[INFO] New photo found...downloading..."
+            print "[OK] Photo name:", name
             newphotos += 1
             urllib.urlretrieve(location, path+"/"+name)
             #Creating Evernote Note
