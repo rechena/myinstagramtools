@@ -42,29 +42,38 @@ if not os.path.exists(path):
     print "[INFO] %s does not exist, creating..." % path
     os.makedirs(path)
 
-recent_media, next = api.tag_recent_media(tag_name=tagtosearch, count=30)
+recent_media, next = api.tag_recent_media(tag_name=tagtosearch, count=1)
 print "Starting process..."
 while next:
-    more_media, next = api.tag_recent_media(with_next_url=next, tag_name='mrechena')
+    more_media, next = api.tag_recent_media(with_next_url=next, tag_name=tagtosearch)
     # print more_media
     recent_media.extend(more_media)
     for i, media in enumerate(more_media):
-        phototitle = media.caption.text.split("#")
+        try:
+            phototitle = media.caption.text.split("#")
+        except Exception as e:
+            print e
+            pass
     	location = media.images['standard_resolution'].url
     	name = "%s.jpg" % media.id
-    	print "%s:%s:%s" % (i, media.images['standard_resolution'].url, media.id)
+
+        #Debug prints...
+    	# print phototitle
+        # print "%s:%s:%s" % (i, media.images['standard_resolution'].url, media.id)
+
     	photos.append(location)
         if not os.path.exists(path+"/"+name):
             print "[INFO] New photo found...downloading..."
+            print "[OK] Photo name:", name
             newphotos += 1
             urllib.urlretrieve(location, path+"/"+name)
             #Creating Evernote Note
             print "[INFO] Creating new Note in Evernote"
             note = Types.Note()
-            if phototitle[0] == "":
+            if ((phototitle[0] == "") or (len(phototitle[0]) > 100)):
                 note.title = "Instagram from %s" % tagtosearch
             else:
-                note.title = phototitle[0].rstrip()
+                note.title = phototitle[0].rstrip().encode("utf-8")
             imagetoadd = os.path.join(path, name)
             image = open(imagetoadd, 'rb').read()
             md5 = hashlib.md5()
