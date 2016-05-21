@@ -45,7 +45,7 @@ if not os.path.exists(path):
 recent_media, next = api.tag_recent_media(tag_name=tagtosearch, count=1)
 print "Starting process..."
 while next:
-    more_media, next = api.tag_recent_media(with_next_url=next, tag_name='mrechena')
+    more_media, next = api.tag_recent_media(with_next_url=next, tag_name=tagtosearch)
     # print more_media
     recent_media.extend(more_media)
     for i, media in enumerate(more_media):
