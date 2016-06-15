@@ -20,7 +20,6 @@ auth_token = "<add your token here>"
 client = EvernoteClient(token=auth_token, sandbox=False)
 
 user_store = client.get_user_store()
-notebeookguid = "<add the notebook guid>"
 version_ok = user_store.checkVersion(
     "Evernote EDAMTest (Python)",
     UserStoreConstants.EDAM_VERSION_MAJOR,
@@ -90,7 +89,8 @@ while next:
             resource.data = data
             note.resources = [resource]
             hash_hex = binascii.hexlify(hash)
-            note.notebookGuid = notebeookguid
+            note.notebookGuid = "<add the notebook GUID here>"
+
             note.content = '<?xml version="1.0" encoding="UTF-8"?>'
             note.content += '<!DOCTYPE en-note SYSTEM ' \
                 '"http://xml.evernote.com/pub/enml2.dtd">'
