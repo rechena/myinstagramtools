@@ -15,6 +15,6 @@ https://github.com/facebookarchive/python-instagram
 * If no title it will create with "Instagram from <tag to search>"
 
 ### TODO
-* Pick the notebook 
+* ~~Pick the notebook~~ - DONE
 * Cleanup...
 * Lots of stuff, this a small, and start script... 
