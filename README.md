@@ -4,7 +4,9 @@
 
 ## Intro
 This is a script that I've done to replace my IFFFT tools. 
-It will search for a specific TAG in Instagram, download the image and create a Evernote Note in the default Evernote Notebook. 
+It will search for a specific TAG on **your account** on Instagram, download the image and create a Evernote Note in the **picked** Evernote Notebook.
+
+*Info*: Due to the new Instagram API rules you can no longer download public tags, so this script will only search for the tag in your account!!
 
 ### Notes
 * For this you'll need: 
